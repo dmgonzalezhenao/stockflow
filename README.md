@@ -1,27 +1,84 @@
-StockFlow SPA - Smart Inventory Management with Asynchronous Architecture
-Introduction
+# 📈 StockFlow 
+### Smart Inventory Management with Asynchronous Architecture v1.0
 
-My CS50x final project is StockFlow, a web application designed to simplify the inventory management of small businesses. The idea originated from observing that many current tools are either too complex or slow for users. My objective was to create a solution that is not only functional for registering transactions, but also offers a fluid and modern user experience, similar to a desktop app.
+[![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Bootstrap 5](https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 
-Dynamic Interface and User Experience
+---
 
-The most distinctive feature of StockFlow is the integration of asynchronous components within its main views. Instead of relying on traditional form submissions that refresh the entire page, I implemented AJAX and the Fetch API to handle transactions and stock updates. This allows the user to register purchases or sales and see the inventory reflected instantly without losing their place, making the workflow much smoother and eliminating unnecessary flickering.
+## 🚀 Overview
 
-Technologies and Technical Stack
+**StockFlow** is a modern Single Page Application (SPA) style web tool designed to simplify inventory management for small businesses. 
 
-For the backend, I implemented Python with Flask, taking advantage of its lightweight nature to manage routes and business logic. Data persistence is handled through SQLite, where I designed a relational schema that connects products with transaction logs.
+Unlike traditional tools that feel slow or cluttered, StockFlow focuses on a **fluid user experience**. By implementing an asynchronous architecture, the app eliminates unnecessary page refreshes, providing a desktop-like feel directly in the browser.
 
-For the frontend, the challenge was even greater. I used asynchronous JavaScript to manage server requests. Every time a section is requested, Flask detects if it is an AJAX request and responds by sending only the necessary HTML fragment, which is then injected into the page's DOM. For the visual design, I used Bootstrap 5, ensuring the tool is fully responsive and easy to use on both computers and mobile devices.
+### 🎥 [Watch the Video Demo](https://youtu.be/BSRfLEa5_W4)
 
-Critical Features and Data Logic
+---
 
-The application goes beyond simple data entry; it implements specific business logic to assist the user. One of the most important features is the Low Stock Alert system. I programmed a conditional logic that evaluates the current quantity of each item against a safety threshold. If a product’s stock falls below this level, the interface provides a visual notification, preventing potential out-of-stock scenarios.
+## ✨ Key Features
 
-Additionally, the system performs automated financial calculations. By dynamically multiplying the unit price by the current quantity, the app provides the "Total Inventory Value" in real-time. To ensure data integrity, I also implemented a Transaction Audit Log. Every time a user buys or sells an item, the database doesn't just update the stock; it also creates a unique record in the activity table with a timestamp. This creates a transparent history that allows the user to track every change made to their assets, reducing human error and improving accountability.
+* **⚡ Seamless Interaction:** Uses **AJAX & Fetch API** to handle transactions and stock updates in real-time without reloading the page.
+* **⚠️ Low Stock Alert System:** Intelligent monitoring that triggers visual notifications when products fall below a safety threshold.
+* **💰 Automated Financials:** Real-time calculation of total inventory value and unit pricing logic.
+* **📜 Audit Trail:** A robust **Transaction Log** that records every movement with timestamps, ensuring accountability and data integrity.
+* **📱 Fully Responsive:** Crafted with **Bootstrap 5** to ensure a perfect experience on desktops, tablets, and mobile devices.
 
-Challenges and Final Thoughts
+---
 
-One of the main challenges was finding the right balance between a multi-page structure and asynchronous updates. I decided to keep Index and Logs as separate routes to ensure better data organization and simpler navigation, while using JavaScript to handle the heavy interaction inside each page. This project allowed me to solidify my knowledge of SQL, Flask, and the DOM. The result is a robust tool that combines the stability of a classic backend with the speed of modern web techniques.
+## 🛠️ Technical Stack
 
-You can see a demostration of the app in action in the following link:
-[Watch the video here](https://youtu.be/BSRfLEa5_W4)
+| Layer | Technology |
+| :--- | :--- |
+| **Backend** | Python / Flask |
+| **Frontend** | JavaScript (ES6+), HTML5, CSS3, Bootstrap 5 |
+| **Database** | SQLite (Relational Schema) |
+| **Architecture** | Asynchronous (Partial DOM injection via AJAX) |
+
+---
+
+## 🧠 Technical Challenges & Decisions
+
+### The Asynchronous Challenge
+One of the project's core goals was to master the **DOM manipulation**. I implemented a system where Flask detects AJAX requests and returns only the necessary HTML fragments. This reduces server load and significantly improves the perceived speed for the user.
+
+### Data Integrity
+To prevent human error, I designed a relational database where the `products` table and the `transactions` table are synchronized. Every stock change is backed by an immutable record in the audit log, following best practices for financial software.
+
+---
+
+## ⚙️ Installation & Usage
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/tu-usuario/stockflow.git](https://github.com/tu-usuario/stockflow.git)
+
+2. **Install dependencies**
+    ```bash
+    pip install -r requirements.txt
+
+3. **Run the application**
+    ```bash
+    flask run
+
+---
+
+## 🗺️ Roadmap & Future Enhancements
+
+The current version of **StockFlow** establishes a solid foundation for inventory management. To further evolve the platform, the following strategic updates are planned:
+
+* **Dynamic Resource Updates:** Implementation of a dedicated module to modify existing product metadata (names, descriptions, and categories) ensuring data remains current without record duplication.
+* **Bulk Data Integration:** Development of a CSV/Excel import engine to facilitate the high-volume migration of product catalogs, optimizing the onboarding process for new businesses.
+* **Enterprise-Grade Persistence:** Migration from SQLite to **PostgreSQL** to support concurrent connections, enhanced data integrity, and production-ready scalability.
+* **Containerization & Deployment:** Dockerizing the application environment to ensure cross-platform consistency and deploying a live instance (via cloud services) to make the tool accessible via web without local environment configuration.
+
+---
+
+## 📝 Final Thoughts
+
+This project was developed as the capstone for **CS50’s Introduction to Computer Science.** It represents a synthesis of SQL database management, Python logic, and advanced JavaScript interaction.
+
+Developed by Daniel Mitchell González Henao - 2024
+
