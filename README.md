@@ -80,5 +80,5 @@ The current version of **StockFlow** establishes a solid foundation for inventor
 
 This project was developed as the capstone for **CS50’s Introduction to Computer Science.** It represents a synthesis of SQL database management, Python logic, and advanced JavaScript interaction.
 
-Developed by Daniel Mitchell González Henao - 2024
+Developed by Daniel Mitchell González Henao - 2026
 
