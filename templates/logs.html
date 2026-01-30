@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block main %}
+<div class="container mt-4">
+    <h2>History</h2>
+
+    <div id="logs-container">
+        {% include "partials/logs_table.html" %}
+    </div>
+</div>
+{% endblock %}

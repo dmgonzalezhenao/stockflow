@@ -1,0 +1,63 @@
+<div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+            <tr>
+                <th>Product Name</th>
+                <th>SKU</th>
+                <th class="text-end">Unit Price</th>
+                <th class="text-center">Stock</th>
+                <th>Reorder Status</th>
+            </tr>
+        </thead>
+        <tbody id="products-table-body">
+            {% for item in stock %}
+            <tr id="row-{{ item.id }}">
+                <td><strong id="name-{{ item.id }}">{{ item.name }}</strong></td>
+                <td><code class="text-muted">{{ item.sku }}</code></td>
+                <td class="text-end">${{ "{:,.2f}".format(item.price) }}</td>
+                <td class="text-center fw-bold">{{ item.current_stock }}</td>
+                <td>
+                    {% if item.current_stock <= item.reorder_level %}
+                        <span class="badge bg-warning text-dark">Request more</span>
+                    {% else %}
+                        <span class="badge bg-success">Ok</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center py-4 text-muted">There's no registered products yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if total_pages > 1 %}
+<nav class="mt-4">
+    <ul class="pagination justify-content-center">
+        <li class="page-item {{ 'disabled' if current_page <= 1 }}">
+            <a class="page-link" href="#"
+               onclick="loadPage('stock-container', '/?page={{ current_page - 1 }}'); return false;">
+               Previous
+            </a>
+        </li>
+
+        {% for p in range(1, total_pages + 1) %}
+        <li class="page-item {{ 'active' if p == current_page }}">
+            <a class="page-link" href="#"
+               onclick="loadPage('stock-container', '/?page={{ p }}'); return false;">
+               {{ p }}
+            </a>
+        </li>
+        {% endfor %}
+
+        <li class="page-item {{ 'disabled' if current_page >= total_pages }}">
+            <a class="page-link" href="#"
+               onclick="loadPage('stock-container', '/?page={{ current_page + 1 }}'); return false;">
+               Next
+            </a>
+        </li>
+    </ul>
+</nav>
+{% endif %}

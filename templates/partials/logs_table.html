@@ -1,0 +1,55 @@
+<div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+            <tr>
+                <th class="ps-4"></th>Datetime</th>
+                <th>Type</th>
+                <th>Action</th>
+                <th class="pe-4">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td class="ps-4 text-muted small">{{ log.timestamp }}</td>
+                <td>
+                    {% if log.type == 'USER' %}
+                        <span class="badge bg-info text-dark">User</span>
+                    {% elif log.type == 'SYSTEM' %}
+                        <span class="badge bg-warning text-dark">System</span>
+                    {% else %}
+                        <span class="badge bg-secondary">{{ log.type }}</span>
+                    {% endif %}
+                </td>
+                <td><code class="fw-bold">{{ log.action }}</code></td>
+                <td class="pe-4">{{ log.description }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" class="text-center py-5 text-muted">
+                    There's no activity logs.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<nav class="mt-4">
+    <ul class="pagination justify-content-center">
+        <li class="page-item {{ 'disabled' if current_page <= 1 }}">
+            <a class="page-link" href="#" onclick="loadLogsPage({{ current_page - 1 }}); return false;">Previous</a>
+        </li>
+
+        {% for page in range(1, total_pages + 1) %}
+        <li class="page-item {{ 'active' if page == current_page }}">
+            <a class="page-link" href="#" onclick="loadLogsPage({{ p }}); return false;">{{ page }}</a>
+        </li>
+        {% endfor %}
+
+        <li class="page-item {{ 'disabled' if current_page >= total_pages }}">
+            <a class="page-link" href="#" onclick="loadLogsPage({{ current_page + 1 }}); return false;">Next</a>
+        </li>
+    </ul>
+</nav>
+
